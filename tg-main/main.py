@@ -13,7 +13,7 @@ sticker_list=[
 
 
 
-TOKEN = "7683440220:AAHc1nHQhxCRlAgCZfaK7oVZx5glzn7rG9k"
+TOKEN = "7683440220:AAHsKjlRCWdf6z1RKKwIaqUHYi6nFfiipzg"
 bot=telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start', 'st'])

@@ -31,22 +31,43 @@ lib = [
         "CreatedAt":"какоетотам.00.2021",
         "author":"moldyGH or dnb team",
         "tags":["fnf", "mods"]
+    },
+    {
+        "title":"огарцы)))))0",
+        "description": "огурчеки))",
+        "imgList":["cucumberi.jpg"],
+        "source": "магазинес двадцать четыри",
+        "CreatedAt":"какоетотам.00.2025",
+        "author":"THEREELLIMON",
+        "tags":["random"]
     }
+
 ] 
 
+tagList = set()
+for mem in lib:
+    for tag in mem["tags"]:
+        tagList.add(tag)
+print("Tags:", tagList)
+    
 
 
 
-
-TOKEN = "7683440220:AAFLJ74Ka-M4S_DcAUCL00NtCDAMFBNKAvU"
+TOKEN = "7683440220:AAHsKjlRCWdf6z1RKKwIaqUHYi6nFfiipzg"
 bot=telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start', 'начать'])
 def start_message(message):
     print(message)
-    bot.send_message(message.chat.id, "перевет я зацикленный на одной и той же игре мембот - напиши чё нить, и я тоже напишу")
+    bot.send_message(message.chat.id, "перевет я зацикленный на одной и той же игре мембот - напиши чё нить, и я тоже напишу   #Tags")
 
-
+@bot.message_handler(commands=["tags", "теги", "tag", "тег"])
+def tags_message(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    for tag in tagList:
+        btn= types.KeyboardButton(tag)
+        markup.add(btn)
+    bot.send_message(message.chat.id, "тегнем щас бум", reply_markup=markup)
 
 @bot.message_handler(commands=['button',"b"])
 def button_message(message):
@@ -65,12 +86,19 @@ def message(message:types.Message):
 
 
     for mem in lib:
-        title:str = mem["title"]    
-        if text in title.lower() :
+        title:str = mem["title"]
+        description:str=mem["description"] 
+        tags:list =mem["tags"]
+        author:str = mem["author"]
+
+
+
+        if text in title.lower() or text in mem["description"].lower() or text in mem["tags"] or text in author.lower():
             isFound = True
-            bot.send_message(message.chat.id, f"Meme's name: {mem["title"]}\n\nDescription: {mem["description"]}")
+            bot.send_message(message.chat.id, f"Meme's name: {title}\n\nDescription: {description}")
             for photo in mem["imgList"]:
                 bot.send_photo(chat_id, open("./img/"+photo, "rb"))
+
     if not isFound:
         bot.send_message(chat_id,"не получилось, не фортануло, нету тут такого")
             

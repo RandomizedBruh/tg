@@ -28,7 +28,7 @@ lib = [
 
 
 
-TOKEN = "7683440220:AAFLJ74Ka-M4S_DcAUCL00NtCDAMFBNKAvU"
+TOKEN = "7683440220:AAHsKjlRCWdf6z1RKKwIaqUHYi6nFfiipzg"
 bot=telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start', 'st'])
